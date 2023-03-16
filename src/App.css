@@ -13,3 +13,40 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+
+.movie-poster {
+  height: 540px;
+  width: 100%;
+  /* zoom  in */
+  object-fit: cover;
+}
+
+.movie-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.movie-specs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-container {
+  background-color: orange;
+  width: 300px;
+}
+
+/* RAM */
+/* .movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+} */
+.movie-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
