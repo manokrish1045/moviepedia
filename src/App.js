@@ -1,189 +1,126 @@
 import './App.css';
 import { useState } from 'react';
-const Movie_list = [{
+import { Msg } from "./Msg"
+import { Welcome } from './Welcome';
+import { Addcolor } from './Addcolor';
+import { MovieList } from './MovieList';
+import { Initial_Movie_list } from './Initial_Movie_list';
+import { Routes, Route, Link, navigate, useNavigate } from "react-router-dom";
+import { AddMovie } from './AddMovie'
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import { borderRadius } from '@mui/system';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-  name: "Vikram",
-  poster:
-    "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
-  rating: 8.4,
-  summary:
-    "Members of a black ops team must track and eliminate a gang of masked murderers.",
 
-},
-{
-  name: "RRR",
-  poster:
-    "https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG",
-  rating: 8.8,
-  summary:
-    "RRR is an upcoming Indian Telugu-language period action drama film directed by S. S. Rajamouli, and produced by D. V. V. Danayya of DVV Entertainments.",
 
-},
-{
-  name: "Iron man 2",
-  poster:
-    "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
-  rating: 7,
-  summary:
-    "With the world now aware that he is Iron Man, billionaire inventor Tony Stark (Robert Downey Jr.) faces pressure from all sides to share his technology with the military. He is reluctant to divulge the secrets of his armored suit, fearing the information will fall into the wrong hands. With Pepper Potts (Gwyneth Paltrow) and Rhodes (Don Cheadle) by his side, Tony must forge new alliances and confront a powerful new enemy.",
 
-},
-{
-  name: "No Country for Old Men",
-  poster:
-    "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg",
-  rating: 8.1,
-  summary:
-    "A hunter's life takes a drastic turn when he discovers two million dollars while strolling through the aftermath of a drug deal. He is then pursued by a psychopathic killer who wants the money.",
 
-},
-{
-  name: "Jai Bhim",
-  poster:
-    "https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
-  summary:
-    "A tribal woman and a righteous lawyer battle in court to unravel the mystery around the disappearance of her husband, who was picked up the police on a false case",
-  rating: 8.8,
 
-},
-{
-  name: "The Avengers",
-  rating: 8,
-  summary:
-    "Marvel's The Avengers (classified under the name Marvel Avengers\n Assemble in the United Kingdom and Ireland), or simply The Avengers, is\n a 2012 American superhero film based on the Marvel Comics superhero team\n of the same name.",
-  poster:
-    "https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg",
 
-},
-{
-  name: "Interstellar",
-  poster: "https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg",
-  rating: 8.6,
-  summary:
-    "When Earth becomes uninhabitable in the future, a farmer and ex-NASA\n pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team\n of researchers, to find a new planet for humans.",
-
-},
-{
-  name: "Baahubali",
-  poster: "https://flxt.tmsimg.com/assets/p11546593_p_v10_af.jpg",
-  rating: 8,
-  summary:
-    "In the kingdom of Mahishmati, Shivudu falls in love with a young warrior woman. While trying to woo her, he learns about the conflict-ridden past of his family and his true legacy.",
-
-},
-{
-  name: "Ratatouille",
-  poster:
-    "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=",
-  rating: 8,
-  summary:
-    "Remy, a rat, aspires to become a renowned French chef. However, he fails to realise that people despise rodents and will never enjoy a meal cooked by him.",
-
-}
-];
 function App() {
   // const names = ["Mano", "Vijay", "Virat", "Sharuk"]
 
-  const users = [
-    {
-      name: 'Mano',
-      pic: "https://www.creative-tim.com/blog/content/images/2022/01/which-development-job-is-right-for-you.jpg"
-    },
-    {
-      name: 'vijay',
-      pic: "https://m.media-amazon.com/images/M/MV5BZWJlODhlMzctOTU0Yi00MTUwLTkxODYtMDNjNTQxYTI2YTE1XkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg"
-    },
-    {
-      name: 'virat',
-      pic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAoDwXfflPgO00fa31FNaW4BKAKA9uSB8Zw&usqp=CAU"
-    }
-  ]
+  // const users = [
+  //   {
+  //     name: 'Mano',
+  //     pic: "https://www.creative-tim.com/blog/content/images/2022/01/which-development-job-is-right-for-you.jpg"
+  //   },
+  //   {
+  //     name: 'vijay',
+  //     pic: "https://m.media-amazon.com/images/M/MV5BZWJlODhlMzctOTU0Yi00MTUwLTkxODYtMDNjNTQxYTI2YTE1XkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg"
+  //   },
+  //   {
+  //     name: 'virat',
+  //     pic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAoDwXfflPgO00fa31FNaW4BKAKA9uSB8Zw&usqp=CAU"
+  //   }
+  // ]
   // const name = "Mano"
+  const [movieList, setMovielist] = useState(Initial_Movie_list)
 
-  const movieList = Movie_list
+  const [mode, setMode] = useState('dark')
+  const themeCtx = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+  const navigate = useNavigate()
+
+  fetch('https://6373a80e348e94729912c6b9.mockapi.io/movies')
+    .then(data => data.json())
+    .then((mvs) => console.log(mvs))
   return (
-    <div className="App">
-      {/* <h1>Hello {name}</h1>
+    <ThemeProvider theme={themeCtx}>
+      <Paper sx={{
+        minHeight: "100vh",
+        borderRadius: "0px",
+      }} elevation={5}>
+        <div className="App">
+          <AppBar position="static">
+            <Toolbar>
+              <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
+              <Button color="inherit" onClick={() => navigate("/movies")}>Movies</Button>
+              <Button color="inherit" onClick={() => navigate("/movies/add")}>Add Movie</Button>
+              <Button color="inherit" onClick={() => navigate("/color")}>Color</Button>
+              <Button sx={{
+                marginLeft: 'auto'
+              }}
+                startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                color='inherit' onClick={() => setMode(mode === "light" ? 'dark' : 'light')}>{mode === 'light' ? 'dark' : 'light'}Mode</Button>
+
+            </Toolbar>
+          </AppBar>
+
+          {/* <h1>Hello {name}</h1>
       <label htmlFor='username'>name : </label>
       <input id="username" placeholder='enter name' /> */}
 
-      {/* <Msg name='Mano' pic="https://www.creative-tim.com/blog/content/images/2022/01/which-development-job-is-right-for-you.jpg" />
+          {/* <Msg name='Mano' pic="https://www.creative-tim.com/blog/content/images/2022/01/which-development-job-is-right-for-you.jpg" />
       <Msg name='vijay' pic="https://m.media-amazon.com/images/M/MV5BZWJlODhlMzctOTU0Yi00MTUwLTkxODYtMDNjNTQxYTI2YTE1XkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg" />
       <Msg name='virat' pic="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAoDwXfflPgO00fa31FNaW4BKAKA9uSB8Zw&usqp=CAU" /> */}
-      {/* {names.map((nm => <Welcome name={nm} />))} */}
-      {/* {users.map((usr) => (
+          {/* {names.map((nm => <Welcome name={nm} />))} */}
+          {/* {users.map((usr) => (
         <Msg
           name={usr.name}
           pic={usr.pic} />
       ))} */}
-      <div className='movie-list'>
-        {movieList.map((mv) => (
-          <Movie movie={mv} />
 
-        ))}
-      </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movies" element={
+              <MovieList movieList={movieList} setMovielist={setMovielist} />} />
+            <Route path='/color' element={<Addcolor />}></Route>
+            <Route path='*' element={<Notfound />} />
+            <Route path='/movies/add'
+              element={<AddMovie movieList={movieList} setMovielist={setMovielist} />}></Route>
+          </Routes>
 
-    </div>
+
+        </div>
+      </Paper>
+    </ThemeProvider>
   );
 }
-function Movie({ movie }) {
-  // const movie = {
-
-  //   name: "Vikram",
-  //   poster:
-  //     "https://m.media-amazon.com/images/M/MV5BMmJhYTYxMGEtNjQ5NS00MWZiLWEwN2ItYjJmMWE2YTU1YWYxXkEyXkFqcGdeQXVyMTEzNzg0Mjkx._V1_.jpg",
-  //   rating: 8.4,
-  //   summary:
-  //     "Members of a black ops team must track and eliminate a gang of masked murderers.",
-
-  // }
+function Notfound() {
   return (
-    <div className='movie-container'>
-      <img src={movie.poster} alt='' className='movie-poster' />
-      <div className='movie-specs'>
-        <h3 className='movie-name'>{movie.name}</h3>
-        <p className='movie-rating'>{movie.rating}</p>
-
-      </div>
-      <p className='movie-summary'>{movie.summary}</p>
-    </div>)
-}
-function Counter() {
-  const [like, setlike] = useState(0)
-  const [dislike, setdislike] = useState(0)
-
-  return (
-    <div>
-      <button onClick={() => setlike(like + 1)}>👍{like}</button>
-      <button onClick={() => setdislike(dislike + 1)}>👎{dislike}</button>
-
-    </div>
-  )
-
-
-}
-function Msg({ pic, name }) {
-  // const name = "Mano"
-  return (
-    <div className='user-container'>
-      <img className='profile-pic'
-        src={pic} alt={name}></img>
-      <h1>Hello {name}</h1>
-      <Counter />
+    <div >
+      <h2>Not Found</h2>
+      <img className='not-found' src='https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg?w=2000' alt='not found' />
     </div>
   )
 }
-
-function Welcome({ name }) {
-  // const { name, pic } = props // object destructuring
-
+function Home() {
   return (
-    <div>
-      {/* <img className='profile-pic'
-        src={pic} alt='mano'></img> */}
-
-      {/* <h1>Hello {name}</h1> */}
+    <div className='home-welcome'>
+      <h1 className='welcome'>Welcome to the app</h1>
+      <img className='movie-home' src='https://as1.ftcdn.net/v2/jpg/02/21/90/10/500_F_221901015_HcIHlto5BGdY9BjojnU7HKuIao38h8lp.jpg' alt='movie' />
     </div>
+
   )
 }
 export default App;
