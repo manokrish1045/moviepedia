@@ -16,6 +16,12 @@ import Paper from '@mui/material/Paper';
 import { borderRadius } from '@mui/system';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { useEffect } from 'react';
+import { MovieDetail } from './MovieDetail';
+import { Notfound } from './Notfound';
+import { Home } from './Home';
+import { BasicForm } from './BasicForm';
+import { EditMovie } from './EditMovie';
 
 
 
@@ -41,7 +47,7 @@ function App() {
   //   }
   // ]
   // const name = "Mano"
-  const [movieList, setMovielist] = useState(Initial_Movie_list)
+  const [movieList, setMovielist] = useState([])
 
   const [mode, setMode] = useState('dark')
   const themeCtx = createTheme({
@@ -51,9 +57,12 @@ function App() {
   });
   const navigate = useNavigate()
 
-  fetch('https://6373a80e348e94729912c6b9.mockapi.io/movies')
-    .then(data => data.json())
-    .then((mvs) => console.log(mvs))
+  useEffect(() => {
+    fetch('${API}')
+      .then((data) => data.json())
+      .then((mvs) => setMovielist(mvs))
+  }, [])
+
   return (
     <ThemeProvider theme={themeCtx}>
       <Paper sx={{
@@ -92,12 +101,17 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/movies" element={
-              <MovieList movieList={movieList} setMovielist={setMovielist} />} />
+            <Route path="/films" element={<navigate replace to='/movies' />} />
+            <Route path="/movies" element={<MovieList />} />
+
             <Route path='/color' element={<Addcolor />}></Route>
             <Route path='*' element={<Notfound />} />
-            <Route path='/movies/add'
-              element={<AddMovie movieList={movieList} setMovielist={setMovielist} />}></Route>
+            <Route path='/movies/add' element={<AddMovie />}></Route>
+            <Route path='/basic-form' element={<BasicForm />}></Route>
+
+            <Route path='/movies/:id' element={<MovieDetail />}></Route>
+            <Route path='/movies/edit/:id' element={<EditMovie />}></Route>
+
           </Routes>
 
 
@@ -105,22 +119,5 @@ function App() {
       </Paper>
     </ThemeProvider>
   );
-}
-function Notfound() {
-  return (
-    <div >
-      <h2>Not Found</h2>
-      <img className='not-found' src='https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg?w=2000' alt='not found' />
-    </div>
-  )
-}
-function Home() {
-  return (
-    <div className='home-welcome'>
-      <h1 className='welcome'>Welcome to the app</h1>
-      <img className='movie-home' src='https://as1.ftcdn.net/v2/jpg/02/21/90/10/500_F_221901015_HcIHlto5BGdY9BjojnU7HKuIao38h8lp.jpg' alt='movie' />
-    </div>
-
-  )
 }
 export default App;
