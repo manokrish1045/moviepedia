@@ -13,34 +13,45 @@ import { useNavigate } from 'react-router-dom';
 
 
 export function Movie({ movie, deleteButton, editButton }) {
+
+
     const styles = {
         color: movie.rating > 8.5 ? "green" : "red"
     };
     const [show, setshow] = useState(true);
     const navigate = useNavigate()
     return (
-        < Card className='movie-container'>
-            <img src={movie.poster} alt='' className='movie-poster' />
-            < CardContent>
-                <div className='movie-specs'>
-                    <h3 className='movie-name'>{movie.name}
-                        <IconButton aria-label="delete" onClick={() => setshow(!show)}>
-                            {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                        </IconButton>
-                        <IconButton aria-label="delete" onClick={() => navigate(`/movies/${movie.id}`)}>
-                            <InfoIcon />
-                        </IconButton>
-                        {/* // conditional rendering */}
-                    </h3>
+
+        <div>
 
 
-                    <p style={styles} className='movie-rating'>⭐{movie.rating}</p>
-                </div>
-                {show ? <p className='movie-summary'>{movie.summary}</p> : null}
-            </CardContent>
-            <CardActions>
-                <Counter /> {deleteButton} {editButton}
-            </CardActions>
+            < Card className='movie-container'>
 
-        </ Card>);
+                <img src={movie.poster} alt='' className='movie-poster' />
+                < CardContent>
+                    <div className='movie-specs'>
+                        <h3 className='movie-name'>{movie.name}
+                            <IconButton aria-label="delete" onClick={() => setshow(!show)}>
+                                {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                            </IconButton>
+                            <IconButton aria-label="delete" onClick={() => navigate(`/movies/${movie.id}`)}>
+                                <InfoIcon />
+                            </IconButton>
+                            {/* // conditional rendering */}
+                        </h3>
+
+
+                        <p style={styles} className='movie-rating'>⭐{movie.rating}</p>
+                    </div>
+                    {show ? <p className='movie-summary'>{movie.summary}</p> : null}
+                </CardContent>
+                <CardActions>
+                    <Counter /> {deleteButton} {editButton}
+                </CardActions>
+
+            </ Card>
+
+
+
+        </div>);
 }

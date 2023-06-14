@@ -5,7 +5,7 @@ import { Welcome } from './Welcome';
 import { Addcolor } from './Addcolor';
 import { MovieList } from './MovieList';
 import { Initial_Movie_list } from './Initial_Movie_list';
-import { Routes, Route, Link, navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { AddMovie } from './AddMovie'
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -22,7 +22,9 @@ import { Notfound } from './Notfound';
 import { Home } from './Home';
 import { BasicForm } from './BasicForm';
 import { EditMovie } from './EditMovie';
-
+import Login from './Login';
+import Register from './Register';
+import { useSelector } from 'react-redux';
 
 
 
@@ -31,6 +33,7 @@ import { EditMovie } from './EditMovie';
 
 function App() {
   // const names = ["Mano", "Vijay", "Virat", "Sharuk"]
+  const { user } = useSelector((state) => state.auth)
 
   // const users = [
   //   {
@@ -70,20 +73,7 @@ function App() {
         borderRadius: "0px",
       }} elevation={5}>
         <div className="App">
-          <AppBar position="static">
-            <Toolbar>
-              <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
-              <Button color="inherit" onClick={() => navigate("/movies")}>Movies</Button>
-              <Button color="inherit" onClick={() => navigate("/movies/add")}>Add Movie</Button>
-              <Button color="inherit" onClick={() => navigate("/color")}>Color</Button>
-              <Button sx={{
-                marginLeft: 'auto'
-              }}
-                startIcon={mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                color='inherit' onClick={() => setMode(mode === "light" ? 'dark' : 'light')}>{mode === 'light' ? 'dark' : 'light'}Mode</Button>
 
-            </Toolbar>
-          </AppBar>
 
           {/* <h1>Hello {name}</h1>
       <label htmlFor='username'>name : </label>
@@ -100,7 +90,11 @@ function App() {
       ))} */}
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path='/' element={user ? <Home /> : <Navigate to='/login' />} />
+
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
+            <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
             <Route path="/films" element={<navigate replace to='/movies' />} />
             <Route path="/movies" element={<MovieList />} />
 
