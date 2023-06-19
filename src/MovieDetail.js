@@ -23,7 +23,7 @@ export function MovieDetail() {
     };
     const navigate = useNavigate();
     return (
-        <div>
+        <div className='info'>
             <iframe
                 width="100%"
                 height="538"

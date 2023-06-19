@@ -26,7 +26,7 @@ export function Home() {
         < div className='home-welcome' >
             <ThemeProvider theme={themeCtx}>
                 <AppBar position="static">
-                    <Toolbar>
+                    <Toolbar className='navv'>
                         <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
                         <Button color="inherit" onClick={() => navigate("/movies")}>Movies</Button>
                         <Button color="inherit" onClick={() => navigate("/movies/add")}>Add Movie</Button>

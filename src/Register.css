@@ -74,3 +74,25 @@ form>p>a {
     color: #888;
     margin-top: 0.25rem;
 }
+
+@media screen and (max-width:576px) {
+    .container2 {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-image: url('./assets/rain.jpeg');
+        background-size: cover;
+    }
+
+    .wrapper2 {
+        width: 73%;
+        height: 84%;
+    }
+
+    .cred2 {
+        gap: 0;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+}

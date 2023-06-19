@@ -75,3 +75,25 @@ form>button:hover {
 .ptag {
     color: #212125;
 }
+
+@media screen and (max-width:576px) {
+    .container1 {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-image: url('./assets/rain.jpeg');
+        background-size: cover;
+    }
+
+    .wrapper1 {
+        width: 70%;
+        height: 80%;
+    }
+
+    .cred1 {
+        gap: 0;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+}

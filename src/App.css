@@ -93,3 +93,41 @@
   padding: 100px;
   margin-left: 150px;
 }
+
+@media screen and (max-width:576px) {
+  .movie-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* background-repeat: no-repeat; */
+    /* background-image: url('./assets/rain.jpeg'); */
+    /* background-size: cover; */
+  }
+
+
+  .info {
+    width: 100%;
+    /* display: flex; */
+    /* flex-direction: row; */
+    display: contents;
+    grid-row: 3;
+  }
+
+  .movie-detail {
+    width: 100%;
+    height: 50%;
+    display: grid;
+
+  }
+
+  .movie-specs {
+    margin: 30px;
+    width: 90%;
+    height: 50%;
+    display: grid;
+  }
+
+  .navv {
+    /* background-color: aqua; */
+  }
+}
