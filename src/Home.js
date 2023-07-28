@@ -30,7 +30,7 @@ export function Home() {
                         <Button color="inherit" onClick={() => navigate("/")}>Home</Button>
                         <Button color="inherit" onClick={() => navigate("/movies")}>Movies</Button>
                         <Button color="inherit" onClick={() => navigate("/movies/add")}>Add Movie</Button>
-                        <Button color="inherit" onClick={() => navigate("/color")}>Color</Button>
+                        {/* <Button color="inherit" onClick={() => navigate("/color")}>Color</Button> */}
                         <Button color="inherit" onClick={logOut}>Logout</Button>
 
                         <Button sx={{
